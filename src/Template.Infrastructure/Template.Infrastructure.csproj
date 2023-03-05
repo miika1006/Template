@@ -13,14 +13,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.14" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Data\" />
     <None Remove="Data\Configurations\" />
+    <None Remove="Data\Repositories\" />
+    <None Remove="Data\Repositories\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Configurations\" />
+    <Folder Include="Data\Repositories\" />
+    <Folder Include="Data\Repositories\Base\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Template.Core\Template.Core.csproj" />

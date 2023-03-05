@@ -1,5 +1,11 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Template.Core.Item;
+using Template.Infrastructure.Data;
+using Template.Infrastructure.Data.Repositories;
 
+var builder = WebApplication.CreateBuilder(args);
+var databaseConnectionString = builder.Configuration.GetConnectionString("Database");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -12,9 +18,12 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     }));
 builder.Services.AddSwaggerGen();
-                                     
+
+builder.Services.AddRepository<IItemRepository, ItemRepository>(databaseConnectionString);
 
 var app = builder.Build();
+
+await app.CreateOrUpdateDatabaseAsync(databaseConnectionString, app.Logger);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -33,4 +42,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
