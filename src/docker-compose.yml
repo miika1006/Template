@@ -1,8 +1,18 @@
 version: '3.4'
 
 services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: testisalasana
+
   template.api:
     image: ${DOCKER_REGISTRY-}template
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: Template.Api/Dockerfile
