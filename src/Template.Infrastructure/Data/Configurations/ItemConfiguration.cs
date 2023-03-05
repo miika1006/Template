@@ -14,6 +14,7 @@ namespace Template.Infrastructure.Data.Configurations
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Id).HasColumnName("id");
             builder.Property(i => i.Name).HasColumnName("name").HasMaxLength(100);
+            builder.Property(i => i.Description).HasColumnName("description").HasMaxLength(255);
             builder.OwnsMany(i => i.Properties, o =>
             {
                 o.ToTable("itemproperty");
@@ -21,7 +22,7 @@ namespace Template.Infrastructure.Data.Configurations
                 o.Property("ItemId").HasColumnName("itemid");
                 o.HasKey(i => i.Id);
                 o.Property(i => i.Id).HasColumnName("id");
-                o.Property(i => i.Property).HasColumnName("id").HasMaxLength(100);
+                o.Property(i => i.Property).HasColumnName("property").HasMaxLength(100);
             });
         }
     }
