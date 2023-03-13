@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Template.Core.Base;
+using Template.Core.Item;
 
 namespace Template.Infrastructure.Data.Repositories.Base
 {
-    public abstract class Repository<T> where T : Entity
+    public abstract class Repository<T> where T : Entity, IRepository<T>
     {
         protected readonly ApplicationDbContext _context;
         public Repository(string connectionString)
@@ -16,7 +17,7 @@ namespace Template.Infrastructure.Data.Repositories.Base
             _context.Set<T>().Add(item);
             return item;
         }
-        public async Task<List<T>> Query(long? lastId = null, int? rows = null, string? order = "asc")
+        public async Task<List<T>> QueryAsync(long? lastId = null, int? rows = null, string? order = "asc")
         {
             var query = _context.Set<T>().AsQueryable();
             bool ascending = order?.ToLower() == "asc";
@@ -27,7 +28,7 @@ namespace Template.Infrastructure.Data.Repositories.Base
                     await orderedQuery.ToListAsync();
 
         }
-        public virtual async Task<T?> Get(long id)
+        public virtual async Task<T?> GetAsync(long id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
