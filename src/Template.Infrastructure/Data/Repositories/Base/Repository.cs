@@ -5,7 +5,7 @@ using Template.Core.Item;
 
 namespace Template.Infrastructure.Data.Repositories.Base
 {
-    public abstract class Repository<T> where T : Entity, IRepository<T>
+    public abstract class Repository<T> : IRepository<T> where T : Entity
     {
         protected readonly ApplicationDbContext _context;
         public Repository(string connectionString)
@@ -17,7 +17,15 @@ namespace Template.Infrastructure.Data.Repositories.Base
             _context.Set<T>().Add(item);
             return item;
         }
-        public async Task<List<T>> QueryAsync(long? lastId = null, int? rows = null, string? order = "asc")
+        public virtual Task<List<T>> QueryAscendingAsync(long? lastId = null, int? rows = null)
+        {
+            return QueryAsync(lastId, rows, "asc");
+        }
+        public virtual Task<List<T>> QueryDescendingAsync(long? lastId = null, int? rows = null)
+        {
+            return QueryAsync(lastId, rows, "desc");
+        }
+        private async Task<List<T>> QueryAsync(long? lastId = null, int? rows = null, string? order = "asc")
         {
             var query = _context.Set<T>().AsQueryable();
             bool ascending = order?.ToLower() == "asc";
@@ -41,7 +49,7 @@ namespace Template.Infrastructure.Data.Repositories.Base
         {
             _context.Set<T>().Remove(item);
         }
-        public async Task<int> RemoveAsync(long id)
+        public virtual async Task<int> RemoveAsync(long id)
         {
             var item = await _context.Set<T>().FindAsync(id);
             if (item != null)
