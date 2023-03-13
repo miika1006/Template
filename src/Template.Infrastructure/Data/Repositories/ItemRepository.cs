@@ -13,7 +13,7 @@ namespace Template.Infrastructure.Data.Repositories
 		}
 
         
-        public async Task<List<Item>> QueryItems(string? searchWord = null, long? lastId = null, int? rows = null, string? order = "asc")
+        public async Task<List<Item>> QueryItemsAsync(string? searchWord = null, long? lastId = null, int? rows = null, string? order = "asc")
         {
             var query = _context.Items.AsQueryable();
             if (!string.IsNullOrWhiteSpace(searchWord)) query = query.Where(i => i.Name.Contains(searchWord));

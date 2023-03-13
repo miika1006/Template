@@ -19,7 +19,7 @@ public class ItemController : ControllerBase
     [HttpGet(Name = "GetItems")]
     public async Task<ActionResult<IEnumerable<Item>>> GetItems()
     {
-        return await _itemRepository.QueryItems();
+        return await _itemRepository.QueryItemsAsync();
     }
 }
 
