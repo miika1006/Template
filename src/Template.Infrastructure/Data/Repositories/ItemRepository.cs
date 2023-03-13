@@ -12,13 +12,17 @@ namespace Template.Infrastructure.Data.Repositories
 		{
 		}
 
-        public async Task<List<Item>> QueryItems(string? searchWord = null, long? lastId = null, int? rows = null)
+        
+        public async Task<List<Item>> QueryItems(string? searchWord = null, long? lastId = null, int? rows = null, string? order = "asc")
         {
             var query = _context.Items.AsQueryable();
             if (!string.IsNullOrWhiteSpace(searchWord)) query = query.Where(i => i.Name.Contains(searchWord));
-            if (lastId.HasValue) query = query.Where(i => i.Id > lastId);
-            
-            return rows.HasValue ? await query.OrderBy(i => i.Id).Take(rows.Value).ToListAsync() : await query.OrderBy(i => i.Id).ToListAsync();
+            bool ascending = order?.ToLower() == "asc";
+            if (lastId.HasValue) query = ascending ? query.Where(i => i.Id > lastId) : query.Where(i => i.Id < lastId);
+            var orderedQuery = ascending ? query.OrderBy(i => i.Id) : query.OrderByDescending(i => i.Id);
+            return rows.HasValue ?
+                    await orderedQuery.Take(rows.Value).ToListAsync() :
+                    await orderedQuery.ToListAsync();
 
         }
     }
