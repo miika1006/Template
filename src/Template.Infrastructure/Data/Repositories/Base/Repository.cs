@@ -40,24 +40,26 @@ namespace Template.Infrastructure.Data.Repositories.Base
         {
             return await _context.Set<T>().FindAsync(id);
         }
-        public virtual T Update(T item)
+        public virtual T? Update(T item)
         {
-             _context.Set<T>().Update(item);
+            if (_context.Set<T>().Any(i => i.Id == item.Id)) _context.Set<T>().Update(item);
+            else return null;
+
             return item;
         }
         public virtual void Remove(T item)
         {
             _context.Set<T>().Remove(item);
         }
-        public virtual async Task<int> RemoveAsync(long id)
+        public virtual async Task<bool> RemoveAsync(long id)
         {
             var item = await _context.Set<T>().FindAsync(id);
             if (item != null)
             {
                 Remove(item);
-                return 1;
+                return true;
             }
-            return 0;
+            return false;
         }
         public virtual async Task<int> SaveChangesAsync()
         {

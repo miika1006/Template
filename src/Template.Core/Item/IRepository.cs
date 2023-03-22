@@ -9,9 +9,9 @@ namespace Template.Core.Item
         Task<List<T>> QueryAscendingAsync(long? lastId = null, int? rows = null);
         Task<List<T>> QueryDescendingAsync(long? lastId = null, int? rows = null);
         Task<T?> GetAsync(long id);
-        T Update(T item);
+        T? Update(T item);
         void Remove(T item);
-        Task<int> RemoveAsync(long id);
+        Task<bool> RemoveAsync(long id);
         Task<int> SaveChangesAsync();
     }
 }
