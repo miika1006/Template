@@ -42,7 +42,7 @@ public class ItemController : ControllerBase
     {
         var created = _itemRepository.Add(item);
         await _itemRepository.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetItem), new { id = created.Id });
+        return CreatedAtAction(nameof(GetItem), new { id = created.Id }, created);
     }
 
     [HttpPut("{id}", Name = "UpdateItem")]
