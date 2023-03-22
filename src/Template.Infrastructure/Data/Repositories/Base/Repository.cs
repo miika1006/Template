@@ -59,7 +59,7 @@ namespace Template.Infrastructure.Data.Repositories.Base
             }
             return 0;
         }
-        public virtual async Task<int> SaveChangesAsync(T item)
+        public virtual async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
         }

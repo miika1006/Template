@@ -12,7 +12,7 @@ namespace Template.Core.Item
         T Update(T item);
         void Remove(T item);
         Task<int> RemoveAsync(long id);
-        Task<int> SaveChangesAsync(T item);
+        Task<int> SaveChangesAsync();
     }
 }
 
