@@ -7,7 +7,9 @@ namespace Template.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
+
+        }
         public ApplicationDbContext(string connectionString) : base(new DbContextOptionsBuilder<ApplicationDbContext>().UseNpgsql(connectionString).Options){}
 
         public DbSet<Item> Items => Set<Item>();

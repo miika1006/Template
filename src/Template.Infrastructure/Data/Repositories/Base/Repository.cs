@@ -8,9 +8,9 @@ namespace Template.Infrastructure.Data.Repositories.Base
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {
         protected readonly ApplicationDbContext _context;
-        public Repository(string connectionString)
+        public Repository(ApplicationDbContext dbContext)
         {
-            _context = new ApplicationDbContext(connectionString);
+            _context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
         public virtual T Add(T item)
         {

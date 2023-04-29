@@ -8,7 +8,7 @@ namespace Template.Infrastructure.Data.Repositories
 {
 	public class ItemRepository : Repository<Item>, IItemRepository
     {
-		public ItemRepository(string connectionString) : base(connectionString)
+		public ItemRepository(ApplicationDbContext dbContext) : base(dbContext)
 		{
 		}
 
