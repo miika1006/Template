@@ -8,8 +8,19 @@ using Template.Infrastructure.Data.Repositories;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Template.Api;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .Enrich.WithClientIp()
+    .Enrich.WithClientAgent()
+    .WriteTo.Console()
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
+
 var databaseConnectionString = builder.Configuration.GetConnectionString("Database");
 // Add services to the container.
 
@@ -84,6 +95,15 @@ if (app.Environment.IsDevelopment())
         options.InjectStylesheet("/v1/swaggerstyles/");
     });
 }
+
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("UserName", httpContext?.User?.Identity?.Name ?? "");
+    };
+});
+
 
 
 app.UseHttpsRedirection();
