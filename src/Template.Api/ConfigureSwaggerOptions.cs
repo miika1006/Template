@@ -36,7 +36,7 @@ namespace Template.Api
             {
                 Title = "Example API",
                 Version = description.ApiVersion.ToString(),
-                Contact = new OpenApiContact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
+                Contact = new OpenApiContact() { Name = "Miika", Email = "miika@somewhere.com" },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             };
 
