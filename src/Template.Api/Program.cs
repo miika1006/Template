@@ -35,6 +35,7 @@ builder.Services.AddCors(options =>
     }));
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddApplicationDbContext(databaseConnectionString);
 builder.Services.AddRepository<IItemRepository, ItemRepository>();
 
 var app = builder.Build();

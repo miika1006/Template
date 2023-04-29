@@ -10,6 +10,16 @@ namespace Template.Infrastructure.Data
 {
 	public static class Database
 	{
+        public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, string connectionString)
+        {
+            return services.AddDbContext<ApplicationDbContext>(o => {
+                o.UseNpgsql(connectionString, npgOptions => {
+                    npgOptions.EnableRetryOnFailure();
+                    npgOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+                });
+                
+            });
+        }
         /// <summary>
         /// Create database or migrate to latest version 
         /// </summary>
