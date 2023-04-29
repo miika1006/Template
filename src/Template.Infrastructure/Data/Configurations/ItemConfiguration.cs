@@ -17,11 +17,9 @@ namespace Template.Infrastructure.Data.Configurations
             builder.Property(i => i.Description).HasColumnName("description").HasMaxLength(255);
             builder.OwnsMany(i => i.Properties, o =>
             {
-                o.ToTable("itemproperty");
-                //hidden foreign key field
-                o.Property("ItemId").HasColumnName("itemid");
-                o.HasKey(i => i.Id);
-                o.Property(i => i.Id).HasColumnName("id");
+                o.ToTable("itemproperty").WithOwner().HasForeignKey("itemid");
+                o.HasKey("itemid");
+                //o.Property("ItemId").HasColumnName("itemid");
                 o.Property(i => i.Property).HasColumnName("property").HasMaxLength(100);
             });
         }

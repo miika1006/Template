@@ -27,14 +27,12 @@ namespace Template.Infrastructure.Migrations
                 name: "itemproperty",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    property = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    itemid = table.Column<long>(type: "bigint", nullable: false)
+                    itemid = table.Column<long>(type: "bigint", nullable: false),
+                    property = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_itemproperty", x => x.id);
+                    table.PrimaryKey("PK_itemproperty", x => x.itemid);
                     table.ForeignKey(
                         name: "FK_itemproperty_item_itemid",
                         column: x => x.itemid,
@@ -42,11 +40,6 @@ namespace Template.Infrastructure.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_itemproperty_itemid",
-                table: "itemproperty",
-                column: "itemid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -11,14 +11,14 @@ using Template.Infrastructure.Data;
 namespace Template.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230305110729_initial")]
+    [Migration("20230429161907_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.14")
+                .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -53,16 +53,8 @@ namespace Template.Infrastructure.Migrations
                 {
                     b.OwnsMany("Template.Core.Item.ItemProperty", "Properties", b1 =>
                         {
-                            b1.Property<long>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("bigint")
-                                .HasColumnName("id");
-
-                            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<long>("Id"));
-
-                            b1.Property<long>("ItemId")
-                                .HasColumnType("bigint")
-                                .HasColumnName("itemid");
+                            b1.Property<long>("itemid")
+                                .HasColumnType("bigint");
 
                             b1.Property<string>("Property")
                                 .IsRequired()
@@ -70,14 +62,12 @@ namespace Template.Infrastructure.Migrations
                                 .HasColumnType("character varying(100)")
                                 .HasColumnName("property");
 
-                            b1.HasKey("Id");
-
-                            b1.HasIndex("ItemId");
+                            b1.HasKey("itemid");
 
                             b1.ToTable("itemproperty", (string)null);
 
                             b1.WithOwner()
-                                .HasForeignKey("ItemId");
+                                .HasForeignKey("itemid");
                         });
 
                     b.Navigation("Properties");
