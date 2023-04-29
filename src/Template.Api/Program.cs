@@ -80,6 +80,8 @@ if (app.Environment.IsDevelopment())
             var name = description.GroupName.ToUpperInvariant();
             options.SwaggerEndpoint(url, name);
         }
+
+        options.InjectStylesheet("/v1/swaggerstyles/");
     });
 }
 
