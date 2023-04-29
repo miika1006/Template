@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Template.Core.Item;
 
-namespace Template.Api.Controllers;
+namespace Template.Api.V1.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v{version:apiVersion}/[controller]")]
 [Consumes(MediaTypeNames.Application.Json)]
 [Produces(MediaTypeNames.Application.Json)]
 public class ItemController : ControllerBase

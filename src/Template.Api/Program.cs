@@ -1,5 +1,4 @@
-﻿using System;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Core.Item;
