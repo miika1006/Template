@@ -29,6 +29,11 @@ namespace Template.Infrastructure.Data
         /// <returns></returns>
         public static async Task CreateOrUpdateDatabaseAsync(this IApplicationBuilder app, string connectionString, ILogger logger)
         {
+            if(string.IsNullOrWhiteSpace(connectionString))
+            {
+                logger.LogWarning("Connectionstring is empty, skipping creating or updating database", connectionString);
+                return;
+            }
             await using var dbContext = new ApplicationDbContext(connectionString);
             if (dbContext.Database.IsRelational())
             {
