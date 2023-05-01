@@ -4,6 +4,7 @@ using Template.Core.Item;
 
 namespace Template.Api.V1.Controllers;
 
+[ApiExplorerSettings(IgnoreApi = true)]
 [ApiController]
 [Route("v{version:apiVersion}/[controller]")]
 public class SwaggerStyles : ControllerBase
