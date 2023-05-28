@@ -1,5 +1,5 @@
 import React, { FC } from "react"; // we need this to make JSX compile
-import { textresources } from "../../common/resources/resources";
+import { textresources } from "../../common/resources";
 
 type SecondPageProps = {
 	resources: textresources;

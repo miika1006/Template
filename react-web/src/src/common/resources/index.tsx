@@ -1,3 +1,5 @@
+import { useCallback, useState } from "react";
+
 export type languages = "fi" | "en";
 export interface textresources {
 	format: (val: string, ...args: string[] | number[]) => string;
@@ -33,7 +35,7 @@ const resources: localizedResources = {
 	},
 };
 
-export const getCurrentLanguage = () => {
+const getCurrentLanguage = () => {
 	let currentLang = window.localStorage.getItem("lang") as languages;
 	if (currentLang == null) {
 		currentLang = "fi"; //TODO: Maybe get browsers language
@@ -41,10 +43,24 @@ export const getCurrentLanguage = () => {
 	}
 	return currentLang;
 };
-export const setCurrentLanguage = (lang: languages) =>
+const setCurrentLanguage = (lang: languages) =>
 	window.localStorage.setItem("lang", lang);
 
-export const getLocalizedResources = (lang?: languages) => {
+const getLocalizedResources = (lang?: languages) => {
 	const currentLang = lang ?? getCurrentLanguage();
 	return resources[currentLang];
+};
+
+export const useTextResources = (): [
+	textresources,
+	(lang: languages) => void
+] => {
+	const [resources, setResources] = useState<textresources>(
+		getLocalizedResources()
+	);
+	const changeLanguage = useCallback((lang: languages) => {
+		setCurrentLanguage(lang);
+		setResources(getLocalizedResources(lang));
+	}, []);
+	return [resources, changeLanguage];
 };

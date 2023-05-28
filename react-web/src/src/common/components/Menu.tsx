@@ -1,6 +1,6 @@
 import { FC } from "react"; // we need this to make JSX compile
 import { Link } from "wouter";
-import { languages, textresources } from "../resources/resources";
+import { languages, textresources } from "../resources";
 import "./Menu.css";
 type MenuProps = {
 	resources: textresources;

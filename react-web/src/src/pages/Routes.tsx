@@ -2,22 +2,10 @@ import { Route } from "wouter";
 import { FrontPage } from "./front";
 import { SecondPage } from "./second";
 import { Menu } from "../common/components/Menu";
-import { useState } from "react";
-import {
-	getLocalizedResources,
-	languages,
-	setCurrentLanguage,
-	textresources,
-} from "../common/resources/resources";
+import { useTextResources } from "../common/resources";
 
 function Routes() {
-	const [resources, setResources] = useState<textresources>(
-		getLocalizedResources()
-	);
-	const changeLanguage = (lang: languages) => {
-		setCurrentLanguage(lang);
-		setResources(getLocalizedResources(lang));
-	};
+	const [resources, changeLanguage] = useTextResources();
 	return (
 		<div>
 			<Menu resources={resources} changeLanguage={changeLanguage} />
