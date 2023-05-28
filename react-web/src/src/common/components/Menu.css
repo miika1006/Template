@@ -1,0 +1,11 @@
+.menu {
+	display: flex;
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+	gap: 1em;
+	box-shadow: 1px 0 10px 2px #8080805e;
+}
+.menu a {
+	display: block;
+}
