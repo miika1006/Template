@@ -1,36 +1,36 @@
 export type languages = "fi" | "en";
 export interface textresources {
+	format: (val: string, ...args: string[] | number[]) => string;
 	FRONTPAGE: string;
 	SECONDPAGE: string;
 	YOU_CLICKED: string;
+	CLICK: string;
 }
 export interface localizedResources {
 	fi: textresources;
 	en: textresources;
-	// format: (val:string)
 }
+const format = (val: string, ...args: string[] | number[]) => {
+	return val.replace(/{([0-9]+)}/g, (match, index) => {
+		// check if the argument is present
+		return typeof args[index] == "undefined" ? match : args[index].toString();
+	});
+};
 const resources: localizedResources = {
 	fi: {
+		format: format,
 		FRONTPAGE: "Etusivu",
 		SECONDPAGE: "Toinen sivu",
 		YOU_CLICKED: "Klikkasit {0} kertaa",
+		CLICK: "Klikkaa",
 	},
 	en: {
+		format: format,
 		FRONTPAGE: "Frontpage",
 		SECONDPAGE: "Second page",
 		YOU_CLICKED: "You clicked {0} times",
+		CLICK: "Click",
 	},
-	/*format = function () {
-        // store arguments in an array
-        var args = arguments;
-        // use replace to iterate over the string
-        // select the match and check if the related argument is present
-        // if yes, replace the match with the argument
-        return this.replace(/{([0-9]+)}/g, function (match, index) {
-          // check if the argument is present
-          return typeof args[index] == 'undefined' ? match : args[index];
-        });
-      };*/
 };
 
 export const getCurrentLanguage = () => {

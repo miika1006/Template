@@ -11,10 +11,8 @@ export const FrontPage: FC<FrontPageProps> = ({ resources }) => {
 	return (
 		<div>
 			<h1>{resources.FRONTPAGE}</h1>
-			<p>
-				{resources.YOU_CLICKED} {count}
-			</p>
-			<button onClick={() => setCount(count + 1)}>Click me</button>
+			<p>{resources.format(resources.YOU_CLICKED, count)}</p>
+			<button onClick={() => setCount(count + 1)}>{resources.CLICK}</button>
 		</div>
 	);
 };
