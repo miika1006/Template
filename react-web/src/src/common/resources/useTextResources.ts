@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { getLocalizedResources, setCurrentLanguage } from "./functions";
-import { textresources } from "./resources";
-import { languages } from "./types";
+import { languages, textresources } from "./types";
 /**
  * use Text Resources
  * @returns [resources[] dictionary, changeLanguage('en') -method]

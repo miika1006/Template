@@ -1,14 +1,6 @@
 import { format } from "../utils/format";
 import { localizedResources } from "./types";
 
-export interface textresources {
-	format: (val: string, ...args: string[] | number[]) => string;
-	FRONTPAGE: string;
-	SECONDPAGE: string;
-	YOU_CLICKED: string;
-	CLICK: string;
-	//TODO: add more
-}
 export const resources: localizedResources = {
 	fi: {
 		format,
