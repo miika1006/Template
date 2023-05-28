@@ -1,9 +1,14 @@
 import React, { FC } from "react"; // we need this to make JSX compile
+import { textresources } from "../../common/resources/resources";
 
-export const SecondPage: FC = () => {
+type SecondPageProps = {
+	resources: textresources;
+};
+
+export const SecondPage: FC<SecondPageProps> = ({ resources }) => {
 	return (
 		<div>
-			<h1>Toinen sivu</h1>
+			<h1>{resources.SECONDPAGE}</h1>
 		</div>
 	);
 };
