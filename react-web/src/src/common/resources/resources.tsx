@@ -18,14 +18,14 @@ const format = (val: string, ...args: string[] | number[]) => {
 };
 const resources: localizedResources = {
 	fi: {
-		format: format,
+		format,
 		FRONTPAGE: "Etusivu",
 		SECONDPAGE: "Toinen sivu",
 		YOU_CLICKED: "Klikkasit {0} kertaa",
 		CLICK: "Klikkaa",
 	},
 	en: {
-		format: format,
+		format,
 		FRONTPAGE: "Frontpage",
 		SECONDPAGE: "Second page",
 		YOU_CLICKED: "You clicked {0} times",
