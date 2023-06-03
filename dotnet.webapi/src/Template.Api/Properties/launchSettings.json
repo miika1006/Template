@@ -12,8 +12,7 @@
     "Template.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7162;http://localhost:5190",
+      "applicationUrl": "http://localhost:10462",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

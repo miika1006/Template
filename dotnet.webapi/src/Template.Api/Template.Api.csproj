@@ -1,44 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.0</Version>
-    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>81e019a7-b3ce-4d16-9e29-58ca4c83e768</UserSecretsId>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\net6.0\Template.Api.xml</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Asp.Versioning.Mvc" Version="6.4.0" />
-    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="6.4.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
-    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="1.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Template.Core\Template.Core.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\Template.Infrastructure\Template.Infrastructure.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="V1\" />
-    <None Remove="V1\Controllers\" />
-    <None Remove="V2\" />
-    <None Remove="V2\Controllers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V1\" />
-    <Folder Include="V1\Controllers\" />
-    <Folder Include="V2\" />
-    <Folder Include="V2\Controllers\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Version>1.0</Version>
+		<DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+		<UserSecretsId>81e019a7-b3ce-4d16-9e29-58ca4c83e768</UserSecretsId>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<WarningLevel>4</WarningLevel>
+		<DocumentationFile>bin\Debug\net7.0\Template.Api.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Asp.Versioning.Mvc" Version="7.0.0" />
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+		<PackageReference Include="Serilog.Enrichers.ClientInfo" Version="1.3.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Template.Core\Template.Core.csproj">
+			<GlobalPropertiesToRemove>
+			</GlobalPropertiesToRemove>
+		</ProjectReference>
+		<ProjectReference Include="..\Template.Infrastructure\Template.Infrastructure.csproj">
+			<GlobalPropertiesToRemove>
+			</GlobalPropertiesToRemove>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="V1\" />
+		<None Remove="V1\Controllers\" />
+		<None Remove="V2\" />
+		<None Remove="V2\Controllers\" />
+		<None Remove="V1\Models\" />
+		<None Remove="V2\Models\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="V1\" />
+		<Folder Include="V1\Controllers\" />
+		<Folder Include="V2\" />
+		<Folder Include="V2\Controllers\" />
+		<Folder Include="V1\Models\" />
+		<Folder Include="V2\Models\" />
+	</ItemGroup>
 </Project>
