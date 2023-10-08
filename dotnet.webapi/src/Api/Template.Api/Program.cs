@@ -65,16 +65,16 @@ builder.Services.AddSwaggerGen(options =>
     var fileName = typeof(Program).Assembly.GetName().Name + ".xml";
     var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
 
-    // integrate xml comments
-    options.IncludeXmlComments(filePath);
+    if(File.Exists(filePath))
+        options.IncludeXmlComments(filePath);
 });
 
-builder.Services.AddApplicationDbContext(databaseConnectionString);
+builder.Services.AddApplicationDbContext(databaseConnectionString!);
 builder.Services.AddRepository<IItemRepository, ItemRepository>();
 
 var app = builder.Build();
 
-await app.CreateOrUpdateDatabaseAsync(databaseConnectionString, app.Logger);
+await app.CreateOrUpdateDatabaseAsync(databaseConnectionString!, app.Logger);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -116,5 +116,7 @@ app.MapControllers();
 
 app.Run();
 
-//added for integrationtests
+/// <summary>
+/// Program: Added for integrationtests
+/// </summary>
 public partial class Program { }
