@@ -7,11 +7,7 @@
 		<Version>1.0</Version>
 		<DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
 		<UserSecretsId>81e019a7-b3ce-4d16-9e29-58ca4c83e768</UserSecretsId>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<WarningLevel>4</WarningLevel>
-		<DocumentationFile>bin\Debug\net7.0\Template.Api.xml</DocumentationFile>
-		<NoWarn>1701;1702;1591</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
