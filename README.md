@@ -1,4 +1,4 @@
-# Dotnet webapi solution template
+# Dotnet webapi solution template (In progress)
 
 a Dotnet REST-api template project.
 
@@ -8,6 +8,7 @@ a Dotnet REST-api template project.
 - added multiple projects to solution to separate concerns.
 - added entity framework with database.
 - configured versioning and swagger/openapi.
+- created minimal api, and started same process
 
 # React typescript web template created with vite
 
