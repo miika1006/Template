@@ -24,8 +24,8 @@ namespace Template.Tests
 
             builder.ConfigureHostConfiguration(configBuilder =>
             {
-                configBuilder.AddInMemoryCollection(
-                    new Dictionary<string, string>
+                configBuilder.AddInMemoryCollection( 
+                    new Dictionary<string, string?>
                     {
                         { "ConnectionStrings:Database","" }
                     });
@@ -40,7 +40,7 @@ namespace Template.Tests
             {
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
 
-                services.Remove(descriptor);
+                services.Remove(descriptor!);
 
                 string dbName = "InMemoryDbForTesting" + Guid.NewGuid().ToString();
 
@@ -59,7 +59,7 @@ namespace Template.Tests
                     {
                         appContext.Database.EnsureCreated();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         throw;
                     }

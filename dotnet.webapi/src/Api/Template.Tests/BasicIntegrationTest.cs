@@ -31,7 +31,8 @@ public class BasicIntegrationTest : IClassFixture<CustomWebApplicationFactory<Pr
     {
         var response = await _client.GetAsync(route);
         response.EnsureSuccessStatusCode();
-        var result = await response.Content.ReadAsStreamAsync();
-        return JsonSerializer.Deserialize<List<Item>>(result);
+        Stream result = await response.Content.ReadAsStreamAsync();
+        var deserialized = await JsonSerializer.DeserializeAsync<List<Item>>(result);
+        return deserialized!;
     }
 }
