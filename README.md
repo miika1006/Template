@@ -10,7 +10,7 @@ a Dotnet REST-api template project.
 - configured versioning and swagger/openapi.
 - created minimal api, and started same process
 
-# React typescript web template created with vite
+# React typescript web template created with vite (In progress)
 
 a React web template project.
 
